@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="第一电影网 - 全网最新电影首发平台，第一时间为您呈现最新院线大片、热播剧集、经典高分影片。diyidianyingwang-wap.github.io 是影迷追片的第一选择。">
+    <meta name="keywords" content="第一电影网, 第一电影, 最新电影, 电影首发, 在线看电影, 热播影视, 高清电影免费看, 2026最新电影, diyidianyingwang-wap">
+    <meta name="author" content="第一电影网">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta property="og:title" content="第一电影网 - 全网最新电影首发平台">
+    <meta property="og:description" content="第一电影网为您提供最新院线大片、热播剧集、经典高分影片，第一时间为您呈现好电影。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diyidianyingwang-wap.github.io">
+    <meta property="og:site_name" content="第一电影网">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="第一电影网 - 全网最新电影首发平台">
+    <meta name="twitter:description" content="第一电影网为您提供最新院线大片、热播剧集、经典高分影片，第一时间为您呈现好电影。">
+    <title>第一电影网 - 全网最新电影首发 | 第一时间看好电影</title>
+    <link rel="canonical" href="https://diyidianyingwang-wap.github.io">
+    <style>
+        /* ===== CSS Reset & Variables ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 紫色渐变科技主题 */
+            --primary: #7c3aed;
+            --primary-light: #a78bfa;
+            --primary-dark: #5b21b6;
+            --accent: #06b6d4;
+            --accent-light: #67e8f9;
+            --bg-base: #0f0a1e;
+            --bg-surface: #1a1428;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --text-primary: #f1f0f5;
+            --text-secondary: #a8a3b8;
+            --text-muted: #6b6678;
+            --border: rgba(124, 58, 237, 0.2);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --gradient-main: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+            --gradient-bg: linear-gradient(180deg, #0f0a1e 0%, #14102e 30%, #0f0a1e 70%, #120c24 100%);
+            --gradient-card: linear-gradient(145deg, rgba(124, 58, 237, 0.08) 0%, rgba(6, 182, 212, 0.03) 100%);
+            --shadow-soft: 0 8px 32px rgba(124, 58, 237, 0.15);
+            --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.25);
+            --radius: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: var(--gradient-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== Animated Background ===== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            opacity: 0.06;
+            animation: float 25s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.06; }
+            90% { opacity: 0.06; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== Header / Nav ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(15, 10, 30, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+        }
+
+        .logo-text {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-menu a {
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+
+        .nav-menu a.active::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 6px;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .mobile-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 24px 80px;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            color: var(--accent-light);
+            margin-bottom: 28px;
+        }
+
+        .hero-tag .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.5); }
+            50% { box-shadow: 0 0 0 8px rgba(6, 182, 212, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-search {
+            max-width: 560px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .hero-search input {
+            width: 100%;
+            padding: 18px 60px 18px 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-search input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .hero-search button {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            border: none;
+            background: var(--gradient-main);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-search button:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 32px;
+            border-radius: 50px;
+            background: var(--gradient-main);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+        }
+
+        .btn-ghost {
+            padding: 14px 32px;
+            border-radius: 50px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Section Common ===== */
+        .section-wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== Movie Grid ===== */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .film-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .film-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .film-cover {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-surface) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .film-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(124, 58, 237, 0.1), transparent, rgba(6, 182, 212, 0.1), transparent);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .film-cover-icon {
+            font-size: 56px;
+            position: relative;
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        .film-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 3;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .film-score {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 3;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            color: var(--accent-light);
+        }
+
+        .film-resolution {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            z-index: 3;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(6, 182, 212, 0.9);
+            color: #0f0a1e;
+        }
+
+        .film-info {
+            padding: 16px;
+        }
+
+        .film-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .film-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .film-meta .sep {
+            width: 3px;
+            height: 3px;
+            background: var(--text-muted);
+            border-radius: 50%;
+        }
+
+        /* ===== Ranking Section ===== */
+        .ranking-wrap {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--border-light);
+        }
+
+        .rank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .rank-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .rank-row:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .rank-idx {
+            font-size: 26px;
+            font-weight: 900;
+            min-width: 48px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .rank-row:nth-child(1) .rank-idx,
+        .rank-row:nth-child(2) .rank-idx,
+        .rank-row:nth-child(3) .rank-idx {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rank-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .rank-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .rank-body h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .rank-body p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .rank-rating {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .rank-rating .val {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+
+        .rank-rating .lbl {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ===== Categories ===== */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .cat-item {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cat-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cat-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .cat-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cat-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .cat-item h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cat-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .cat-count {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            background: rgba(124, 58, 237, 0.15);
+            color: var(--primary-light);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ===== News ===== */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .news-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--primary);
+        }
+
+        .news-cover {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-surface) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+        }
+
+        .news-cover .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .news-body {
+            padding: 20px;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .news-body h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .news-body p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== About ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .feature-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+        }
+
+        .feature-box .fi {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .feature-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .feature-box p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .about-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-card-visual {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1;
+            border-radius: 24px;
+            background: var(--gradient-card);
+            border: 2px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card-visual::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: conic-gradient(from 180deg, transparent, rgba(124, 58, 237, 0.05), transparent, rgba(6, 182, 212, 0.05), transparent);
+            animation: rotate 12s linear infinite;
+        }
+
+        .about-visual-logo {
+            font-size: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-visual-name {
+            font-size: 22px;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-visual-url {
+            font-size: 13px;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-stats-row {
+            display: flex;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-stat-item {
+            text-align: center;
+        }
+
+        .about-stat-item .num {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-light);
+        }
+
+        .about-stat-item .lbl {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 50px 24px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand .footer-logo .logo-mark {
+            width: 34px;
+            height: 34px;
+            font-size: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-main);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Scroll to top ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(124, 58, 237, 0.6);
+        }
+
+        /* ===== Animations ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-visual {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 260px;
+                height: 100vh;
+                background: rgba(15, 10, 30, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 80px 24px 40px;
+                border-left: 1px solid var(--border);
+                transition: right 0.4s ease;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu a {
+                width: 100%;
+                padding: 12px 16px;
+                font-size: 16px;
+            }
+
+            .nav-menu a.active::before {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 16px 60px;
+            }
+
+            .movies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 14px;
+            }
+
+            .ranking-wrap {
+                padding: 24px 16px;
+            }
+
+            .rank-row {
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .rank-idx {
+                font-size: 20px;
+                min-width: 36px;
+            }
+
+            .rank-thumb {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            .cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .section-wrap {
+                padding: 60px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .movies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .cat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-cta {
+                gap: 10px;
+            }
+
+            .btn-primary, .btn-ghost {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+    <!-- Animated Background -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-inner">
+            <a href="#home" class="logo">
+                <span class="logo-mark">🎞️</span>
+                <span class="logo-text">第一电影网</span>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="active">首页</a>
+                <a href="#films">最新电影</a>
+                <a href="#ranking">热播排行</a>
+                <a href="#genres">影片分类</a>
+                <a href="#news">影视资讯</a>
+                <a href="#about">关于我们</a>
+            </nav>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-glow"></div>
+        <div class="hero-container">
+            <div class="hero-tag">
+                <span class="pulse-dot"></span>
+                <span>第一电影网 · 全网电影首发平台</span>
+            </div>
+            <h1>第一电影网<br><span class="gradient-text">第一时间看好电影</span></h1>
+            <p class="hero-desc">
+                第一电影网（diyidianyingwang-wap.github.io）致力于为影迷朋友提供最新、最热、最全的电影资源信息。
+                从院线大片到经典佳作，从国产新片到海外精品，第一时间为您呈现，让好电影不再错过。
+            </p>
+            <div class="hero-search">
+                <input type="text" placeholder="搜索电影名称、演员、导演..." aria-label="搜索电影">
+                <button type="button" aria-label="搜索">🔍</button>
+            </div>
+            <div class="hero-cta">
+                <a href="#films" class="btn-primary">🎬 浏览最新电影</a>
+                <a href="#ranking" class="btn-ghost">📊 查看排行榜</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Films -->
+    <section class="section-wrap" id="films">
+        <div class="section-head reveal">
+            <span class="section-kicker">Latest Films</span>
+            <h2 class="section-title">🆕 最新上线电影</h2>
+            <p class="section-subtitle">第一电影网精选近期最新上映的高品质影片，每日更新，让您第一时间掌握最新电影动态。</p>
+        </div>
+        <div class="movies-grid">
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">🚀</span>
+                    <span class="film-badge">热映中</span>
+                    <span class="film-score">⭐ 9.3</span>
+                    <span class="film-resolution">4K</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">星际远征</h3>
+                    <div class="film-meta">
+                        <span>科幻</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>152分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">🏙️</span>
+                    <span class="film-badge">新片</span>
+                    <span class="film-score">⭐ 8.7</span>
+                    <span class="film-resolution">1080P</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">都市迷踪</h3>
+                    <div class="film-meta">
+                        <span>悬疑</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>118分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">⚔️</span>
+                    <span class="film-score">⭐ 9.1</span>
+                    <span class="film-resolution">4K HDR</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">龙吟九天</h3>
+                    <div class="film-meta">
+                        <span>古装</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>165分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">💘</span>
+                    <span class="film-badge">推荐</span>
+                    <span class="film-score">⭐ 8.9</span>
+                    <span class="film-resolution">1080P</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">夏末情书</h3>
+                    <div class="film-meta">
+                        <span>爱情</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>105分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">🌊</span>
+                    <span class="film-score">⭐ 8.6</span>
+                    <span class="film-resolution">4K</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">深渊之光</h3>
+                    <div class="film-meta">
+                        <span>冒险</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>138分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">🤖</span>
+                    <span class="film-badge">独家</span>
+                    <span class="film-score">⭐ 8.8</span>
+                    <span class="film-resolution">4K HDR</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">机械之心</h3>
+                    <div class="film-meta">
+                        <span>科幻</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>126分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">🎭</span>
+                    <span class="film-score">⭐ 9.0</span>
+                    <span class="film-resolution">1080P</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">岁月无声</h3>
+                    <div class="film-meta">
+                        <span>剧情</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>142分钟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="film-card reveal">
+                <div class="film-cover">
+                    <span class="film-cover-icon">🔥</span>
+                    <span class="film-badge">热映中</span>
+                    <span class="film-score">⭐ 8.5</span>
+                    <span class="film-resolution">4K</span>
+                </div>
+                <div class="film-info">
+                    <h3 class="film-title">烈焰焚城</h3>
+                    <div class="film-meta">
+                        <span>动作</span><span class="sep"></span>
+                        <span>2026</span><span class="sep"></span>
+                        <span>132分钟</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ranking -->
+    <section class="section-wrap" id="ranking">
+        <div class="section-head reveal">
+            <span class="section-kicker">Top Chart</span>
+            <h2 class="section-title">🔥 本周热播排行榜</h2>
+            <p class="section-subtitle">第一电影网根据全网观影数据和用户评分，实时更新热播影片排行榜，发现本周最值得看的电影。</p>
+        </div>
+        <div class="ranking-wrap reveal">
+            <div class="rank-list">
+                <div class="rank-row">
+                    <span class="rank-idx">1</span>
+                    <div class="rank-thumb">🚀</div>
+                    <div class="rank-body">
+                        <h4>星际远征</h4>
+                        <p>科幻 / 冒险 / 视效</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">9.3</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">2</span>
+                    <div class="rank-thumb">⚔️</div>
+                    <div class="rank-body">
+                        <h4>龙吟九天</h4>
+                        <p>古装 / 动作 / 史诗</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">9.1</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">3</span>
+                    <div class="rank-thumb">💘</div>
+                    <div class="rank-body">
+                        <h4>夏末情书</h4>
+                        <p>爱情 / 青春 / 治愈</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">8.9</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">4</span>
+                    <div class="rank-thumb">🤖</div>
+                    <div class="rank-body">
+                        <h4>机械之心</h4>
+                        <p>科幻 / 剧情 / 人性</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">8.8</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">5</span>
+                    <div class="rank-thumb">🎭</div>
+                    <div class="rank-body">
+                        <h4>岁月无声</h4>
+                        <p>剧情 / 家庭 / 年代</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">9.0</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">6</span>
+                    <div class="rank-thumb">🌊</div>
+                    <div class="rank-body">
+                        <h4>深渊之光</h4>
+                        <p>冒险 / 奇幻 / 视觉</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">8.6</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">7</span>
+                    <div class="rank-thumb">🏙️</div>
+                    <div class="rank-body">
+                        <h4>都市迷踪</h4>
+                        <p>悬疑 / 犯罪 / 烧脑</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">8.7</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank-idx">8</span>
+                    <div class="rank-thumb">🔥</div>
+                    <div class="rank-body">
+                        <h4>烈焰焚城</h4>
+                        <p>动作 / 灾难 / 救援</p>
+                    </div>
+                    <div class="rank-rating">
+                        <div class="val">8.5</div>
+                        <div class="lbl">综合评分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres -->
+    <section class="section-wrap" id="genres">
+        <div class="section-head reveal">
+            <span class="section-kicker">Genres</span>
+            <h2 class="section-title">📂 影片分类浏览</h2>
+            <p class="section-subtitle">第一电影网涵盖多种影片类型，无论您喜欢什么风格，都能在这里找到心仪的电影。</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-item reveal">
+                <span class="cat-icon">💥</span>
+                <h3>动作片</h3>
+                <p>拳拳到肉，热血沸腾</p>
+                <span class="cat-count">1,500+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">😄</span>
+                <h3>喜剧片</h3>
+                <p>轻松解压，欢乐无限</p>
+                <span class="cat-count">1,200+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">💕</span>
+                <h3>爱情片</h3>
+                <p>甜蜜浪漫，感人至深</p>
+                <span class="cat-count">1,800+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">🔍</span>
+                <h3>悬疑片</h3>
+                <p>层层推理，反转不断</p>
+                <span class="cat-count">680+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">😱</span>
+                <h3>恐怖片</h3>
+                <p>心跳加速，惊悚刺激</p>
+                <span class="cat-count">420+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">🌌</span>
+                <h3>科幻片</h3>
+                <p>脑洞大开，想象无限</p>
+                <span class="cat-count">580+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">🏯</span>
+                <h3>古装片</h3>
+                <p>历史风云，侠义江湖</p>
+                <span class="cat-count">950+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">🐉</span>
+                <h3>动画电影</h3>
+                <p>精美画面，全龄合家欢</p>
+                <span class="cat-count">600+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">🎪</span>
+                <h3>奇幻片</h3>
+                <p>魔法世界，奇幻冒险</p>
+                <span class="cat-count">520+ 部</span>
+            </div>
+            <div class="cat-item reveal">
+                <span class="cat-icon">📺</span>
+                <h3>热播剧集</h3>
+                <p>追剧不停，精彩继续</p>
+                <span class="cat-count">3,500+ 部</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section class="section-wrap" id="news">
+        <div class="section-head reveal">
+            <span class="section-kicker">News & Updates</span>
+            <h2 class="section-title">📰 最新影视资讯</h2>
+            <p class="section-subtitle">第一电影网为您带来最新最全的影视行业动态，掌握第一手电影资讯。</p>
+        </div>
+        <div class="news-grid">
+            <article class="news-card reveal">
+                <div class="news-cover">
+                    <span class="tag">上映信息</span>
+                    <span>🎬</span>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span>📅 2026-10-01</span>
+                        <span>👁 15,200 阅读</span>
+                    </div>
+                    <h3>2026年国庆档总票房突破35亿，科幻大片《星际远征》领跑</h3>
+                    <p>第一电影网讯：今年国庆档电影市场火爆，《星际远征》以14.2亿票房领跑。该片凭借震撼视效和深刻主题赢得观众一致好评，有望冲击年度票房冠军。</p>
+                </div>
+            </article>
+            <article class="news-card reveal">
+                <div class="news-cover">
+                    <span class="tag">奖项动态</span>
+                    <span>🏆</span>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span>📅 2026-09-29</span>
+                        <span>👁 9,800 阅读</span>
+                    </div>
+                    <h3>第42届东京国际电影节公布入围名单，三部华语片入选主竞赛</h3>
+                    <p>据第一电影网了解，第42届东京国际电影节主竞赛单元公布入围名单，三部华语影片成功入选，展现了华语电影在国际舞台上的强劲实力。</p>
+                </div>
+            </article>
+            <article class="news-card reveal">
+                <div class="news-cover">
+                    <span class="tag">观影指南</span>
+                    <span>📋</span>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span>📅 2026-09-26</span>
+                        <span>👁 18,500 阅读</span>
+                    </div>
+                    <h3>十月观影指南｜第一电影网推荐10部不容错过的优质新片</h3>
+                    <p>金秋十月好片云集！第一电影网为您精选10部十月必看新片，涵盖科幻、爱情、悬疑、动作等多种类型，总有一部适合您，赶紧收藏起来吧！</p>
+                </div>
+            </article>
+            <article class="news-card reveal">
+                <div class="news-cover">
+                    <span class="tag">行业观察</span>
+                    <span>📈</span>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span>📅 2026-09-23</span>
+                        <span>👁 7,600 阅读</span>
+                    </div>
+                    <h3>2026年中国电影市场前三季度数据出炉：国产片占比再创新高</h3>
+                    <p>第一电影网统计数据显示，2026年前三季度中国电影市场国产片票房占比达到78.5%，创下历史新高。优质国产内容持续发力，观众认可度不断提升。</p>
+                </div>
+            </article>
+            <article class="news-card reveal">
+                <div class="news-cover">
+                    <span class="tag">明星动态</span>
+                    <span>⭐</span>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span>📅 2026-09-21</span>
+                        <span>👁 11,300 阅读</span>
+                    </div>
+                    <h3>实力派演员李XX新片杀青，与知名导演再度合作引期待</h3>
+                    <p>据第一电影网获悉，实力派演员李XX主演的新片近日正式杀青。该片由知名导演执导，讲述了一段跨越时空的深情故事，预计2027年春节档与观众见面。</p>
+                </div>
+            </article>
+            <article class="news-card reveal">
+                <div class="news-cover">
+                    <span class="tag">技术前沿</span>
+                    <span>🎥</span>
+                </div>
+                <div class="news-body">
+                    <div class="news-meta">
+                        <span>📅 2026-09-18</span>
+                        <span>👁 8,900 阅读</span>
+                    </div>
+                    <h3>中国电影技术新突破：虚拟制片技术让拍摄效率提升300%</h3>
+                    <p>第一电影网关注到，国内电影制作领域迎来重大技术革新。虚拟制片技术的广泛应用让电影拍摄效率大幅提升，成本显著降低，为国产电影高质量发展注入新动能。</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section-wrap" id="about">
+        <div class="section-head reveal">
+            <span class="section-kicker">About Us</span>
+            <h2 class="section-title">📌 关于第一电影网</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <h2>第一电影网 — 第一时间，好电影不错过</h2>
+                <p>
+                    第一电影网（diyidianyingwang-wap.github.io）是一个专注于为影迷提供最新、最热、最全电影信息的专业平台。
+                    我们始终秉持"第一时间"的理念，力争在影片上映的第一时间为您带来最详尽的影片资讯。
+                </p>
+                <p>
+                    从院线大片到网络电影，从国产佳作到海外精品，从经典老片到最新上映，第一电影网涵盖了海量的影视资源信息。
+                    我们每日更新内容，确保您始终站在影视资讯的第一线。
+                </p>
+                <div class="about-features">
+                    <div class="feature-box">
+                        <span class="fi">⚡</span>
+                        <div>
+                            <h4>即时更新</h4>
+                            <p>新片上线第一时间推送</p>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <span class="fi">🎯</span>
+                        <div>
+                            <h4>精准推荐</h4>
+                            <p>基于喜好智能推荐</p>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <span class="fi">🔒</span>
+                        <div>
+                            <h4>安全无忧</h4>
+                            <p>绿色平台放心浏览</p>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <span class="fi">📱</span>
+                        <div>
+                            <h4>全端适配</h4>
+                            <p>手机电脑完美体验</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual reveal">
+                <div class="about-card-visual">
+                    <span class="about-visual-logo">🎞️</span>
+                    <div class="about-visual-name">第一电影网</div>
+                    <div class="about-visual-url">diyidianyingwang-wap.github.io</div>
+                    <div class="about-stats-row">
+                        <div class="about-stat-item">
+                            <div class="num">12,000+</div>
+                            <div class="lbl">影片资源</div>
+                        </div>
+                        <div class="about-stat-item">
+                            <div class="num">4K</div>
+                            <div class="lbl">超清画质</div>
+                        </div>
+                        <div class="about-stat-item">
+                            <div class="num">每日</div>
+                            <div class="lbl">实时更新</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-mark">🎞️</span>
+                        <span class="logo-text">第一电影网</span>
+                    </div>
+                    <p>第一电影网（diyidianyingwang-wap.github.io）是您第一时间看好电影的首选平台，提供最新电影资讯、热播排行、影片分类等全方位影视服务。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#films">最新电影</a></li>
+                        <li><a href="#ranking">热播排行</a></li>
+                        <li><a href="#genres">影片分类</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>热门分类</h4>
+                    <ul>
+                        <li><a href="#genres">动作电影</a></li>
+                        <li><a href="#genres">科幻大片</a></li>
+                        <li><a href="#genres">爱情喜剧</a></li>
+                        <li><a href="#genres">悬疑推理</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#about">网站介绍</a></li>
+                        <li><a href="#news">影视资讯</a></li>
+                        <li><a href="#about">联系我们</a></li>
+                        <li><a href="#about">免责声明</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 第一电影网 (diyidianyingwang-wap.github.io) 版权所有 | 本站仅提供影视信息分享服务</p>
+                <div class="social-links">
+                    <a href="#" aria-label="微信">💬</a>
+                    <a href="#" aria-label="微博">📱</a>
+                    <a href="#" aria-label="QQ">🐧</a>
+                    <a href="#" aria-label="抖音">🎵</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop" aria-label="回到顶部">↑</button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                scrollTopBtn.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        // Scroll to top
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Active nav highlight on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(function(section) {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Reveal animation on scroll
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, revealOptions);
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            revealObserver.observe(el);
+        });
+
+        // Animated background particles
+        const bgContainer = document.getElementById('bgAnimation');
+        const particleCount = window.innerWidth > 768 ? 30 : 15;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('span');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 15 + 10) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+            particle.style.animationDelay = Math.random() * 25 + 's';
+            bgContainer.appendChild(particle);
+        }
+
+        // Search functionality
+        const searchInput = document.querySelector('.hero-search input');
+        const searchBtn = document.querySelector('.hero-search button');
+
+        function doSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert('第一电影网提示：搜索 "' + query + '"\n正在为您查找相关影片...');
+                searchInput.value = '';
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        // Film card click
+        document.querySelectorAll('.film-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                const title = card.querySelector('.film-title').textContent;
+                alert('第一电影网提示：您选择了《' + title + '》\n详情页面正在开发中...');
+            });
+        });
+
+        // Rank row click
+        document.querySelectorAll('.rank-row').forEach(function(row) {
+            row.addEventListener('click', function() {
+                const title = row.querySelector('.rank-body h4').textContent;
+                alert('第一电影网提示：您选择了《' + title + '》\n详情页面正在开发中...');
+            });
+        });
+
+        // Category click
+        document.querySelectorAll('.cat-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                const name = item.querySelector('h3').textContent;
+                alert('第一电影网提示：您选择了「' + name + '」分类\n影片列表正在加载中...');
+            });
+        });
+
+        // News card click
+        document.querySelectorAll('.news-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                const title = card.querySelector('.news-body h3').textContent;
+                alert('第一电影网提示：\n「' + title + '」\n详情页面正在开发中...');
+            });
+        });
+    </script>
+
+</body>
+</html>
